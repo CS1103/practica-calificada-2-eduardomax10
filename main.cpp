@@ -1,30 +1,30 @@
 #include <iostream>
-
 #include "heap.h"
-using namespace std;
+#include <string>
+#include <vector>
+#include <queue>
 
 int main()
 {
-    heap<int> h;
-    load_from("data.txt", h);
-    cout << "heap" << endl;
-    cout << h;
-    h.insert(10);
-    h.insert(20);
-    h.insert(40);
-    h.insert(50);
-    h.insert(10);
-    cout << "heap" << endl;
-    cout << h;
-    cout << "heap" << endl;
-    cout << h;
-    cin >> h;
-    cout << "heap" << endl;
-    cout << h;
-    insert(h, 100, 200);
-    cout << "heap" << endl;
-    cout << h;
-    load_from("data.txt", h);
-    cout << h;
+    std::vector<int> vector_data;
+    std::deque<int> deque_data;
+
+    std::ifstream infile;
+    infile.open ("data.txt");
+    std::string data;
+    while(!infile.eof())
+    {
+        getline(infile, data, '\n');
+        vector_data.push_back(stoi(data));
+        deque_data.push_back(stoi(data));
+    }
+    infile.close();
+
+    heap<int> my_vector_heap(vector_data);
+    heap<int> my_deque_heap(deque_data);
+
+    my_deque_heap.print();
+
     return 0;
 }
+
